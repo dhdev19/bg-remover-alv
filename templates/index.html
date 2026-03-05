@@ -1,18 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="scroll-smooth">
 <head>
-    <title>AI BG Remover</title>
-</head>
-<body>
-    <h2>Upload Image</h2>
-    <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="image" required>
-        <button type="submit">Remove Background</button>
-    </form>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI BG Remover • AlvaiTools</title>
+    <link rel="shortcut icon" href="https://alvaitools.com/images/ai-favicon.png" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
-    {% if output_image %}
-        <h3>Result:</h3>
-        <img src="{{ output_image }}" width="300">
-    {% endif %}
+    <style>
+        :root { --primary: 59 130 246; }
+        body { font-family: 'Inter', sans-serif; background: #0f172a; color: white; }
+        .tool-hero-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e2937 50%, #0f172a 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 18s ease infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .neon-glow { text-shadow: 0 0 18px rgb(59 130 246 / 0.65); }
+        .tool-card { transition: all 0.3s ease; }
+        .tool-card:hover { transform: translateY(-4px); border-color: rgb(59 130 246 / 0.4); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-800">
+        <div class="max-w-screen-2xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="https://alvaitools.com" class="flex items-center gap-3">
+                <img src="https://alvaitools.com/images/ai-logo.png" alt="AlvaiTools" class="h-9 w-auto">
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="https://alvaitools.com" class="text-sm text-zinc-300 hover:text-white transition">Back to Tools</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="tool-hero-bg flex-grow pt-28 pb-20">
+        <div class="max-w-2xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h1 class="text-5xl md:text-6xl font-bold tracking-tighter neon-glow mb-5">AI Background Remover</h1>
+                <p class="text-xl text-zinc-400 max-w-xl mx-auto">
+                    Upload an image and get a transparent background version instantly. 100% privacy – processing happens in your browser.
+                </p>
+            </div>
+
+            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-8 md:p-10 shadow-2xl tool-card">
+                <form method="POST" enctype="multipart/form-data" class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Choose image</label>
+                        <input type="file" name="image" accept="image/*" required class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-500" />
+                    </div>
+                    <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-xl transition">Remove Background</button>
+                </form>
+
+                {% if output_image %}
+                <div class="mt-8 text-center">
+                    <h3 class="text-2xl font-bold mb-4">Result:</h3>
+                    <img src="{{ output_image }}" class="mx-auto rounded-lg shadow-lg" alt="Output" />
+                </div>
+                {% endif %}
+            </div>
+
+            <a href="https://alvaitools.com" class="inline-flex items-center gap-2 mt-12 text-blue-400 hover:text-blue-300 font-medium transition-colors">
+                <i class="fa-solid fa-arrow-left"></i> Back to Tools
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-black border-t border-zinc-900 py-10 text-center text-sm text-zinc-500">
+        <div class="max-w-screen-2xl mx-auto px-6">© 2026 AlvaiTools • Made with ❤️ in India</div>
+    </footer>
+
 </body>
 </html>
